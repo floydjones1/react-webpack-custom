@@ -1,12 +1,15 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
+/** @type {import('webpack').Configuration} */
 module.exports = {
   mode: "production",
   entry:"./src/index.tsx",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "js/[name].bundle.js",
+    filename: "js/main.js",
   },
   devtool: "source-map",
   resolve: {
@@ -15,10 +18,14 @@ module.exports = {
   devServer: {
     contentBase: "./dist",
     port: 3000,
-    liveReload: false
   },
   module: {
     rules: [
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+      },
       {
         test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
@@ -29,11 +36,10 @@ module.exports = {
     ],
   },
   plugins: [
+    new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: './src/public/index.html'
-    })
-    // new BundleAnalyzerPlugin({
-      
-    // }),
+    }),
+    new ForkTsCheckerWebpackPlugin()
   ],
 };
