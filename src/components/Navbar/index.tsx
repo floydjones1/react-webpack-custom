@@ -6,7 +6,13 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
-const NavBar = () => {
+import '../../main.css'
+
+interface Props {
+  label: string
+}
+
+const NavBar: React.FC<Props> = ({ label }) => {
 
   return (
     <AppBar position="static">
@@ -17,7 +23,7 @@ const NavBar = () => {
         <Typography variant="h6">
           News
     </Typography>
-        <Button color="inherit">Login</Button>
+        <Button color="inherit">{label}</Button>
       </Toolbar>
     </AppBar>
   )

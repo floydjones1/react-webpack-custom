@@ -6,7 +6,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 /** @type {import('webpack').Configuration} */
 module.exports = {
   mode: "production",
-  entry:"./src/index.tsx",
+  entry: "./src/index.tsx",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "js/main.js",
@@ -38,6 +38,7 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
+      favicon: false,
       template: './src/public/index.html'
     }),
     new ForkTsCheckerWebpackPlugin()

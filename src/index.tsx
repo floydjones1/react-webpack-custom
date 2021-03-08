@@ -11,7 +11,7 @@ function App() {
   num = 2
   return (
     <div>
-      <Navbar />
+      <Navbar label='login' />
       <h1>Hello blog readers {num}</h1>
       <Button variant="contained" color="primary">Hi</Button>
     </div>
