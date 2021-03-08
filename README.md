@@ -8,6 +8,7 @@ This project is to be used to get started with react typescrpt without CRA to al
 yarn <--- Install dependencies
 yarn start <--- Run Development server
 yarn build <--- Build Prodiction code
+yarn test <--- Test Project
 ```
 
 
@@ -18,6 +19,7 @@ webpack-bundle-analyzer <--- analyzing js bundles
 fork-ts-checker-webpack-plugin <--- typechecking
 css (css-loader, sass-loader, mini-css-extract-plugin)
 html (html-webpack-plugin)
+testing (jest, ts-jest, react-testing-library)
 
 React: ^17.0.1
 Webpack: ^5.21.2

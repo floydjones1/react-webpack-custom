@@ -4,8 +4,12 @@ import MyComponent from '..'
 
 describe('This will test MyComponent', () => {
   test('renders message', () => {
+
+    const thing: { pokemon: string } = { pokemon: 'hi' }
+
     render(<MyComponent label='Login' />)
-    // as suggested by Giorgio Polvara a more idiomatic way:
+
+
     expect(screen.getByText('Login'))
       .toBeInTheDocument()
   })
