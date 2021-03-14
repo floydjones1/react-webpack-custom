@@ -39,7 +39,7 @@ module.exports = {
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       favicon: false,
-      template: './src/public/index.html'
+      template: './public/index.html'
     }),
     new ForkTsCheckerWebpackPlugin()
   ],
