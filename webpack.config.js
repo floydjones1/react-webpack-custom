@@ -2,11 +2,13 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 /** @type {import('webpack').Configuration} */
 module.exports = {
-  mode: "production",
-  entry: "./src/index.tsx",
+  mode: "development",
+  entry: "./src/index",
+  target: 'web',
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "js/main.js",
@@ -18,6 +20,9 @@ module.exports = {
   devServer: {
     contentBase: "./dist",
     port: 3000,
+    hot: true,
+    disableHostCheck: true,
+    historyApiFallback: true
   },
   module: {
     rules: [
@@ -29,9 +34,7 @@ module.exports = {
       {
         test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
-        use: [
-          { loader: 'babel-loader' }
-        ]
+        use: 'babel-loader',
       },
     ],
   },
@@ -41,6 +44,7 @@ module.exports = {
       favicon: false,
       template: './public/index.html'
     }),
-    new ForkTsCheckerWebpackPlugin()
+    new ForkTsCheckerWebpackPlugin(),
+    new ReactRefreshWebpackPlugin(),
   ],
 };
