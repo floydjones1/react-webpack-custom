@@ -1,17 +1,16 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
+const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 
 /** @type {import('webpack').Configuration} */
 module.exports = {
-  mode: "development",
   entry: "./src/index",
-  target: 'web',
+  target: "web",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "js/main.js",
+    filename: "js/[name].[contenthash].js",
+    chunkFilename: "js/[name].[contenthash].js",
   },
   devtool: "source-map",
   resolve: {
@@ -22,27 +21,26 @@ module.exports = {
     port: 3000,
     hot: true,
     disableHostCheck: true,
-    historyApiFallback: true
+    historyApiFallback: true,
   },
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.(scss|css)$/,
         exclude: /node_modules/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
       {
         test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
-        use: 'babel-loader',
+        use: "babel-loader",
       },
     ],
   },
   plugins: [
-    new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       favicon: false,
-      template: './public/index.html'
+      template: "./public/index.html",
     }),
     new ForkTsCheckerWebpackPlugin(),
     new ReactRefreshWebpackPlugin(),
