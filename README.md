@@ -20,6 +20,7 @@ fork-ts-checker-webpack-plugin <--- typechecking
 css (style-loader, css-loader, sass-loader) <--- CSS
 html (html-webpack-plugin)
 testing (jest, ts-jest, react-testing-library)
+hot reloading (react-refresh)
 
 React: ^17.0.1
 Webpack: ^5.21.2
