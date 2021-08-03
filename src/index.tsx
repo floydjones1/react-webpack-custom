@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import ReactDOM from "react-dom";
-import Button from "./components/Button";
+
+const Button = React.lazy(() => import("./components/Button"));
+// import Button from "./components/Button";
 
 // import default style
 import "./main.css";
@@ -36,9 +38,10 @@ function App() {
       <h1 style={{ width: "100%" }}>Welcome to App! {date.toDateString()}</h1>
 
       <h3>Your number is {num}</h3>
-      <Button text="Increment Me!" onClick={handleIncrement} />
-      <Button text="Decrement Me!" onClick={handleDecrement} />
-
+      <Suspense fallback={null}>
+        <Button text="Increment Me!" onClick={handleIncrement} />
+        <Button text="Decrement Me!" onClick={handleDecrement} />
+      </Suspense>
       <ul>
         {data.map((row) => (
           <li key={row.id}>{row.title}</li>

@@ -12,6 +12,11 @@ module.exports = {
     filename: "js/[name].[contenthash].js",
     chunkFilename: "js/[name].[contenthash].js",
   },
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+    },
+  },
   devtool: "source-map",
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx"],
